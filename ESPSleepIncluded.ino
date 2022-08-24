@@ -54,7 +54,7 @@ if (SerialBT.available()>0){ //Si hay datos enviados por la aplicacion
 
 
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(1000);
 
   //Increment boot number and print it every reboot
