@@ -9,7 +9,11 @@ BluetoothSerial SerialBT;
 
 Adafruit_INA260 ina260 = Adafruit_INA260();
 
-String Enviados[] = {"0","0","0"}; //Hacemos un arreglo para los datos a enviar
+const int BatPin = 34;
+
+int BatLvl = 0;
+
+String Enviados[] = {"0","0","0","0"}; //Hacemos un arreglo para los datos a enviar
 
 double entrada; //Declaramos una variables para los datos de entrada
  
@@ -35,6 +39,7 @@ if (SerialBT.available()>0){ //Si hay datos enviados por la aplicacion
       Enviados[0] = ina260.readBusVoltage(); //Localizar el dato de voltaje que retorna el INA260
       Enviados[1] = ina260.readCurrent();//Localizar el dato de corriente que retorna el INA260
       Enviados[2] = ina260.readPower();//Localizar el dato de potencia que retorna el INA260
+      Enviados[3] = analogRead(BatPin);//Localizar el dato de potencia que retorna el INA260
     }
     
   }
@@ -46,7 +51,8 @@ if (SerialBT.available()>0){ //Si hay datos enviados por la aplicacion
         SerialBT.println(Enviados[1]);
         SerialBT.println(",");
         SerialBT.println(Enviados[2]);
-        Serial.println();
+        SerialBT.println(",");
+        SerialBT.println(Enviados[3]);
     }
 
   }
